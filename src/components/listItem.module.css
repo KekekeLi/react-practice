@@ -1,0 +1,15 @@
+/* .common {
+    text-indent: 2em;
+    font-weight: bold;
+    color: #008000;
+} */
+.title {
+    composes:common from 'common.module.css';
+    color: #004000;
+    text-decoration: underline;
+    font-weight: normal;
+}
+
+.list-title {
+    color: #007888;
+}
