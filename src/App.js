@@ -26,18 +26,22 @@ class App extends Component {
       return <div className="text-center">购物车是空的</div>
     }
     return listData.map(item => {
-      return <ListItem key={item.id} data={item}></ListItem>
+      return <ListItem key={item.id} data={item} onDelete={this.handleDelete}></ListItem>
     })
+  }
+
+  handleDelete = (id) => {
+    console.log('id:   ',id);
   }
 
   render() {
     return (
       <div className="container">
         {/* {listData.length === 0 && <div className="text-center">购物车是空的</div>} */}
-        {/* {this.renderList()} */}
-        {listData.map(item => {
+        {this.renderList()}
+        {/* {listData.map(item => {
           return <ListItem key={item.id} data={item}></ListItem>
-        })}
+        })} */}
       </div>
     );
   }
