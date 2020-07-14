@@ -2,31 +2,27 @@ import React, { Component } from 'react';
 import style from './listItem.module.css'
 import classnames from 'classnames/bind';
 import cn from 'classnames';
-
-let count = 0
 const cls = classnames.bind(style);
 class ListItem extends Component {
-    // constructor(props) {
-    //     super(props);
-    //     this.state = {}
-    //     this.handleDecrease = this.handleDecrease.bind(this)
-    // }
-
-
-    doSomethingWithCount() {
-        if (count < 0) {
-            count = 0
+    constructor(props) {
+        super(props);
+        this.state = {
+            count: 0
         }
     }
 
+
     handleDecrease = () => {
-        count--;
-        this.doSomethingWithCount()
+        this.setState({
+            count: this.state.count - 1
+        })
     }
 
     handleIncrease = (id, ev) => {
         console.log(id, ev);
-        count++;
+        this.setState({
+            count: this.state.count + 1
+        })
     }
 
     // doHandle = () => {
@@ -34,11 +30,11 @@ class ListItem extends Component {
     // }
 
     manageCount() {
-        return count + '个'
+        return this.state.count + '个'
     }
     render() {
         const _cn = cn({
-            'themed-grid-col-s': !count
+            'themed-grid-col-s': !this.state.count
         })
         return (
             <div className="row mb-3">
@@ -48,11 +44,11 @@ class ListItem extends Component {
                     </span>
                 </div>
                 <div className="col-1 themed-grid-col">￥{this.props.data.price}</div>
-                {/* <div className={`col-2 themed-grid-col${count ? '' : '-s'}`}>{count ? "" : <span>零</span>}</div> */}
+                <div className={`col-2 themed-grid-col${this.state.count ? '' : '-s'}`}>{this.state.count ? "" : <span>零</span>}</div>
                 <div className={`col-2 themed-grid-col ` + _cn}>
-                    <button onClick={this.handleDecrease} type='button' className='btn btn-primary'>-</button>
-                    {/* {count ? "" : <span>零</span>} */}
-                    <span className={cls('digital')}>{count}</span>
+                    <button onClick={() => { this.handleDecrease() }} type='button' className='btn btn-primary'>-</button>
+                    {/* {this.state.count ? "" : <span>零</span>} */}
+                    <span className={cls('digital')}>{this.state.count}</span>
                     <button onClick={(ev) => { this.handleIncrease(this.props.data.id, ev) }} type='button' className='btn btn-primary'>+</button>
                 </div>
                 <div className="col-1 themed-grid-col">
