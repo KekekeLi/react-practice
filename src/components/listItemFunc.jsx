@@ -18,7 +18,7 @@ const ListItem = (props) => {
                 </span>
             </div>
             <div className="col-1 themed-grid-col">￥{props.data.price}</div>
-            <div className={`col-2 themed-grid-col ` + _cn}>{count ? "" : <span>零</span>}</div>
+            <div className={`col-2 themed-grid-col ` + _cn}>{count ? "" : <span>零++</span>}</div>
         </div>
     );
 }
